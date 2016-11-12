@@ -12,4 +12,4 @@
 	logk = log --graph --pretty=oneline --abbrev-commit --decorate
 	log-color = log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m %C(white)- %d%x1b[0m%x20%s %Cgreen(%cr) %C(bold blue)<%an>%Creset'  --date=relative
 [push]
-    default = simple
+	default = simple
