@@ -1,0 +1,13 @@
+[user]
+	name = Kevin Wu Won
+	email = exclipy@gmail.com
+[color]
+	ui = auto
+[alias]
+	st = status
+	br = branch
+	co = checkout
+	ci = checkin
+	df = diff
+	logk = log --graph --pretty=oneline --abbrev-commit --decorate
+	log-color = log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m %C(white)- %d%x1b[0m%x20%s %Cgreen(%cr) %C(bold blue)<%an>%Creset'  --date=relative
