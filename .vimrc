@@ -20,7 +20,7 @@ call vundle#end()            " required
 filetype plugin indent on
 
 syntax on
-colorscheme desert
+colorscheme monokai
 set nocompatible
 set backspace=indent,eol,start
 set background=dark
