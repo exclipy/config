@@ -11,5 +11,8 @@
 	df = diff
 	logk = log --graph --pretty=oneline --abbrev-commit --decorate
 	log-color = log --graph --full-history --all --color --pretty=format:'%x1b[31m%h%x09%x1b[32m %C(white)- %d%x1b[0m%x20%s %Cgreen(%cr) %C(bold blue)<%an>%Creset'  --date=relative
+  gr = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
 [push]
 	default = simple
+[merge]
+	conflictStyle = diff3
