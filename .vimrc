@@ -1,3 +1,5 @@
+set nocompatible
+
 " START VUNDLE CONFIG
 filetype off                  " required
 
@@ -17,17 +19,32 @@ Plugin 'wincent/command-t'
 Plugin 'sickill/vim-monokai'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'altercation/vim-colors-solarized'
+"Plugin 'ternjs/tern_for_vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'ConradIrwin/vim-bracketed-paste'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'osyo-manga/unite-quickfix'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'chrisbra/vim-diff-enhanced'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " END VUNDLE CONFIG
+
+" Enable file type based indent configuration and syntax highlighting.
 filetype plugin indent on
 
+set t_Co=256
 syntax on
-colorscheme solarized
+colorscheme lucius
+LuciusLightHighContrast
 set nocompatible
 set backspace=indent,eol,start
-set background=dark
+set background=light
 set noautoindent
 set nobackup
 set nowritebackup
@@ -40,9 +57,9 @@ set smartcase
 set hlsearch
 set dir=~/tmp
 set whichwrap=b,s,h,l,<,>,[,]
+set nowrap
 set linebreak
 set shiftwidth=2
-set shiftwidth=4
 set smarttab
 set nosmarttab
 set tabstop=8
@@ -50,35 +67,84 @@ set tabstop=4
 set noexpandtab
 set expandtab
 set guioptions-=T
-set showtabline=2
 set wildignore=*.o,*.obj,*.bak,*.class
 set spelllang=en_gb
-set autochdir
 set noerrorbells
 set vb t_vb=
 set undofile
 set undodir=$HOME/.vim/undo
 set diffopt=filler,vertical
+set number
+set cursorline
+
+nmap <space> \
+vmap <space> \
 
 nmap <C-J> <C-E><C-E>
 nmap <C-K> <C-Y><C-Y>
 map k gk
 map j gj
-map <C-S> :w
-let g:CommandTFileScanner = 'git'
+map <C-S> :<C-u>w
+
+let g:CommandTFileScanner='git'
+let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=histogram")'
+map <Leader>d :<C-u>Gdiff master<cr><C-w>l
 
 """"""""""""" BEGIN EASYMOTION CONFIG
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping=0 " Disable default mappings
+let g:EasyMotion_smartcase=1
 
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `<Space>{char}{label}`
-map <Space> <Plug>(easymotion-bd-f)
-map <S-Space> <Plug>(easymotion-bd-f2)
-nmap <C-Space> <Plug>(easymotion-overwin-f)
-
-" JK motions: Line motions
-map ∆ <Plug>(easymotion-j)
-map ˚ <Plug>(easymotion-k)
-
+map <leader><Space> <Plug>(easymotion-bd-f)
+nmap <Esc><Esc> :<C-u>nohls<cr>
 """"""""""""" END EASYMOTION CONFIG
+
+""""""""""""" START SYNTASTIC CONFIG
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_check_on_wq=0
+let g:syntastic_javascript_checkers=['glint']
+let g:syntastic_proto_checkers=['glint']
+let g:syntastic_bzl_checkers=['gpylint']
+let g:syntastic_gcl_checkers=['gcl']
+let g:syntastic_html_checkers=[]
+""""""""""""" END SYNTASTIC CONFIG
+
+""""""""""""" START AIRLINE CONFIG
+set laststatus=2
+let g:airline_section_x=''
+let g:airline_section_y=''
+let g:airline_theme='bubblegum'
+""""""""""""" START AIRLINE CONFIG
+
+""""""""""""" START UNITE CONFIG
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nmap <leader>f :<C-u>Unite -start-insert line<CR>
+nmap <leader>b :<C-u>Unite buffer<CR>
+nmap <leader>u :<C-u>Unite file_mru<CR>
+nmap <leader>l :<C-u>Unite location_list<CR>
+nmap <leader>q :<C-u>Unite quickfix<CR>
+nmap <leader>g :<C-u>Unite script:bash:/usr/local/google/home/kevinww/bin/git5diff.sh<CR>
+autocmd FileType unite imap <buffer> <C-c> <Plug>(unite_exit)
+autocmd FileType unite nmap <buffer> <C-c> <Plug>(unite_exit)
+""""""""""""" END UNITE CONFIG
+
+""""""""""""" START GITGUTTER CONFIG
+let g:gitgutter_diff_base='master'
+let g:gitgutter_sign_added='+ '
+let g:gitgutter_sign_modified='? '
+let g:gitgutter_sign_removed='__'
+let g:gitgutter_sign_removed_first_line='‾‾'
+let g:gitgutter_sign_modified_removed='?_'
+let g:gitgutter_map_keys=0
+let g:gitgutter_diff_args='--diff-algorithm=histogram'
+highlight link GitGutterAdd DiffAdd
+highlight link GitGutterChange DiffChange
+highlight link GitGutterDelete Underlined
+highlight link GitGutterChangeDelete DiffChange
+""""""""""""" START GITGUTTER CONFIG
+
+let g:ycm_auto_trigger = 0
