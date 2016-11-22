@@ -19,8 +19,6 @@ Plugin 'wincent/command-t'
 Plugin 'sickill/vim-monokai'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'ternjs/tern_for_vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -100,19 +98,6 @@ map <leader><Space> <Plug>(easymotion-bd-f)
 nmap <Esc><Esc> :<C-u>nohls<cr>
 """"""""""""" END EASYMOTION CONFIG
 
-""""""""""""" START SYNTASTIC CONFIG
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_check_on_wq=0
-let g:syntastic_javascript_checkers=['glint']
-let g:syntastic_proto_checkers=['glint']
-let g:syntastic_bzl_checkers=['gpylint']
-let g:syntastic_gcl_checkers=['gcl']
-let g:syntastic_html_checkers=[]
-""""""""""""" END SYNTASTIC CONFIG
-
 """"""""""""" START AIRLINE CONFIG
 set laststatus=2
 let g:airline_section_x=''
@@ -146,5 +131,3 @@ highlight link GitGutterChange DiffChange
 highlight link GitGutterDelete Underlined
 highlight link GitGutterChangeDelete DiffChange
 """"""""""""" START GITGUTTER CONFIG
-
-let g:ycm_auto_trigger = 0
