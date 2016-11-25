@@ -15,7 +15,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'mbbill/undotree'
-Plugin 'wincent/command-t'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'sickill/vim-monokai'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'altercation/vim-colors-solarized'
@@ -84,7 +84,7 @@ map k gk
 map j gj
 map <C-S> :<C-u>w
 
-let g:CommandTFileScanner='git'
+let g:ctrlp_map = '<leader>t'
 let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=histogram")'
 map <Leader>d :<C-u>Gdiff master<cr><C-w>l
 
