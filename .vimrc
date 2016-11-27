@@ -28,6 +28,10 @@ Plugin 'osyo-manga/unite-quickfix'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'chrisbra/vim-diff-enhanced'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'editorconfig/editorconfig-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
