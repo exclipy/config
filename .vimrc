@@ -40,6 +40,13 @@ call vundle#end()            " required
 " Enable file type based indent configuration and syntax highlighting.
 filetype plugin indent on
 
+if !isdirectory($HOME."/.vim/swap")
+    call mkdir($HOME."/.vim/swap", "p")
+endif
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "p")
+endif
+
 set t_Co=256
 syntax on
 colorscheme lucius
@@ -57,7 +64,7 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
-set dir=~/tmp
+set dir=$HOME/.vim/swap
 set whichwrap=b,s,h,l,<,>,[,]
 set nowrap
 set linebreak
