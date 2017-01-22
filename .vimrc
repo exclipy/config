@@ -85,19 +85,38 @@ set undodir=$HOME/.vim/undo
 set diffopt=filler,vertical
 set number
 set cursorline
+set hidden
 
-nmap <space> \
-vmap <space> \
+map <space> \
 
-nmap <C-J> <C-E><C-E>
-nmap <C-K> <C-Y><C-Y>
+map <C-J> <C-E><C-E>
+map <C-K> <C-Y><C-Y>
 map k gk
 map j gj
 map <C-S> :<C-u>w
 
 let g:ctrlp_map = '<leader>t'
 let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=histogram")'
-map <Leader>d :<C-u>Gdiff master<cr><C-w>l
+nmap <Leader>d :<C-u>Gdiff master<cr><C-w>l
+" Map Tab to switch to previous buffer
+map <C-i> <C-^>
+" Arrow keys to do window switching and management
+map <Left> <C-w>h
+map <Down> <C-w>j
+map <Up> <C-w>k
+map <Right> <C-w>l
+" Make shift-arrows work in tmux
+map [1;2D <S-Left>
+map [1;2B <S-Down>
+map [1;2A <S-Up>
+map [1;2C <S-Right>
+map <S-Left> 2<C-w><
+map <S-Down> <C-w>-
+map <S-Up> <C-w>+
+map <S-Right> 2<C-w>>
+
+map <Enter> :
+map <Backspace> :<C-u>nohls<cr>
 
 """"""""""""" BEGIN EASYMOTION CONFIG
 let g:EasyMotion_do_mapping=0 " Disable default mappings
@@ -106,7 +125,6 @@ let g:EasyMotion_smartcase=1
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `<Space>{char}{label}`
 map <leader><Space> <Plug>(easymotion-bd-f)
-nmap <Esc><Esc> :<C-u>nohls<cr>
 """"""""""""" END EASYMOTION CONFIG
 
 """"""""""""" START AIRLINE CONFIG
@@ -118,14 +136,14 @@ let g:airline_theme='bubblegum'
 
 """"""""""""" START UNITE CONFIG
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nmap <leader>f :<C-u>Unite -start-insert line<CR>
-nmap <leader>b :<C-u>Unite buffer<CR>
-nmap <leader>u :<C-u>Unite file_mru<CR>
-nmap <leader>l :<C-u>Unite location_list<CR>
-nmap <leader>q :<C-u>Unite quickfix<CR>
-nmap <leader>g :<C-u>Unite script:bash:/usr/local/google/home/kevinww/bin/git5diff.sh<CR>
+map <leader>f :<C-u>Unite -start-insert line<CR>
+map <leader>b :<C-u>Unite buffer<CR>
+map <leader>u :<C-u>Unite file_mru<CR>
+map <leader>l :<C-u>Unite location_list<CR>
+map <leader>q :<C-u>Unite quickfix<CR>
+map <leader>g :<C-u>Unite script:bash:/usr/local/google/home/kevinww/bin/git5diff.sh<CR>
 autocmd FileType unite imap <buffer> <C-c> <Plug>(unite_exit)
-autocmd FileType unite nmap <buffer> <C-c> <Plug>(unite_exit)
+autocmd FileType unite map <buffer> <C-c> <Plug>(unite_exit)
 """"""""""""" END UNITE CONFIG
 
 """"""""""""" START GITGUTTER CONFIG
