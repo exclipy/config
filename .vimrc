@@ -40,9 +40,6 @@ call vundle#end()            " required
 " Enable file type based indent configuration and syntax highlighting.
 filetype plugin indent on
 
-if !isdirectory($HOME."/.vim/swap")
-    call mkdir($HOME."/.vim/swap", "p")
-endif
 if !isdirectory($HOME."/.vim/undo")
     call mkdir($HOME."/.vim/undo", "p")
 endif
@@ -50,7 +47,7 @@ endif
 set t_Co=256
 syntax on
 colorscheme lucius
-LuciusLightHighContrast
+LuciusWhiteHighContrast
 set nocompatible
 set backspace=indent,eol,start
 set background=light
@@ -64,7 +61,6 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
-set dir=$HOME/.vim/swap
 set whichwrap=b,s,h,l,<,>,[,]
 set nowrap
 set linebreak
@@ -73,7 +69,6 @@ set smarttab
 set nosmarttab
 set tabstop=8
 set tabstop=4
-set noexpandtab
 set expandtab
 set guioptions-=T
 set wildignore=*.o,*.obj,*.bak,*.class
@@ -85,6 +80,7 @@ set undodir=$HOME/.vim/undo
 set diffopt=filler,vertical
 set number
 set cursorline
+set noswapfile
 set hidden
 
 map <space> \
@@ -94,6 +90,7 @@ map <C-K> <C-Y><C-Y>
 map k gk
 map j gj
 map <C-S> :<C-u>w
+nmap <Leader>u :<C-u>UndotreeToggle<CR>
 
 let g:ctrlp_map = '<leader>t'
 let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=histogram")'
@@ -118,6 +115,8 @@ map <S-Right> 2<C-w>>
 map <Enter> :
 map <Backspace> :<C-u>nohls<cr>
 
+nmap <leader>m :<C-u>tabnew<cr>"bp:diffthis<cr>:vnew<cr>"ap:diffthis<cr>
+
 """"""""""""" BEGIN EASYMOTION CONFIG
 let g:EasyMotion_do_mapping=0 " Disable default mappings
 let g:EasyMotion_smartcase=1
@@ -136,12 +135,10 @@ let g:airline_theme='bubblegum'
 
 """"""""""""" START UNITE CONFIG
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-map <leader>f :<C-u>Unite -start-insert line<CR>
-map <leader>b :<C-u>Unite buffer<CR>
-map <leader>u :<C-u>Unite file_mru<CR>
-map <leader>l :<C-u>Unite location_list<CR>
-map <leader>q :<C-u>Unite quickfix<CR>
-map <leader>g :<C-u>Unite script:bash:/usr/local/google/home/kevinww/bin/git5diff.sh<CR>
+nmap <leader>f :<C-u>Unite -start-insert line<CR>
+nmap <leader>b :<C-u>Unite buffer<CR>
+nmap <leader>l :<C-u>Unite location_list<CR>
+nmap <leader>q :<C-u>Unite quickfix<CR>
 autocmd FileType unite imap <buffer> <C-c> <Plug>(unite_exit)
 autocmd FileType unite map <buffer> <C-c> <Plug>(unite_exit)
 """"""""""""" END UNITE CONFIG
@@ -160,3 +157,12 @@ highlight link GitGutterChange DiffChange
 highlight link GitGutterDelete Underlined
 highlight link GitGutterChangeDelete DiffChange
 """"""""""""" START GITGUTTER CONFIG
+
+let g:ycm_auto_trigger = 0
+
+nmap <leader>D :<C-u>TsuquyomiDefinition<cr>
+nmap <leader>F :<C-u>TsuquyomiReferences<cr>
+nmap <leader>R :<C-u>TsuquyomiRenameSymbol<cr>
+nmap <leader>B :<C-u>TsuquyomiGoBack<cr>
+nmap <leader>E :<C-u>TsuquyomiGeterr<cr>
+nmap <leader>P :<C-u>TsuquyomiReloadProject<cr>
