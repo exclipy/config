@@ -19,6 +19,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'sickill/vim-monokai'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -82,11 +83,13 @@ set number
 set cursorline
 set noswapfile
 set hidden
+set wildmenu
+set wildmode=longest:full,full
 
 map <space> \
 
-map <C-J> <C-E><C-E>
-map <C-K> <C-Y><C-Y>
+nmap <C-J> <C-E><C-E>
+nmap <C-K> <C-Y><C-Y>
 map k gk
 map j gj
 map <C-S> :<C-u>w
@@ -112,10 +115,12 @@ map <S-Down> <C-w>-
 map <S-Up> <C-w>+
 map <S-Right> 2<C-w>>
 
-map <Enter> :
+map ' :
 map <Backspace> :<C-u>nohls<cr>
 
 nmap <leader>m :<C-u>tabnew<cr>"bp:diffthis<cr>:vnew<cr>"ap:diffthis<cr>
+
+map <leader>n :<C-u>NERDTreeFind<cr>
 
 """"""""""""" BEGIN EASYMOTION CONFIG
 let g:EasyMotion_do_mapping=0 " Disable default mappings
